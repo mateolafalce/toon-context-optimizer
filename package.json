@@ -1,0 +1,41 @@
+{
+  "name": "toon-context-optimizer",
+  "displayName": "TOON Context Optimizer",
+  "description": "Optimizes JSON attachments for chat requests by using TOON when it saves tokens.",
+  "version": "0.1.0",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "main": "./out/extension.js",
+  "activationEvents": [
+    "onChatParticipant:ai-prompt-popup.context"
+  ],
+  "contributes": {
+    "chatParticipants": [
+      {
+        "id": "ai-prompt-popup.context",
+        "name": "context",
+        "fullName": "TOON Context Optimizer",
+        "description": "Converts JSON context files to TOON when more efficient before forwarding to the LLM.",
+        "isSticky": false
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/node": "^16.11.7",
+    "@types/vscode": "^1.80.0",
+    "typescript": "^5.1.3"
+  },
+  "dependencies": {
+    "@dqbd/tiktoken": "^1.0.22",
+    "@toon-format/toon": "^2.1.0"
+  }
+}

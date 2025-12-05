@@ -1,0 +1,5 @@
+out
+node_modules
+.vscode-test
+*.vsix
+toon-context-optimizer-0.1.0.vsix

@@ -12,15 +12,13 @@
 
 Boost adoption of the TOON format by seamlessly integrating it into your IDE chat workflows. **TOON Context Optimizer** inspects every JSON file you attach to VS Code's chat, converts it to TOON automatically when that saves tokens, and transparently forwards the optimal representation to the LLM.
 
-## Why It Matters
-- **IDE integration**: removes friction so developers benefit from TOON without leaving their editor.
-- **Token-aware context:** Each JSON attachment is measured with tiktoken; only the most efficient format reaches the LLM.
-- **Trustworthy logging:** The extension reports which files were optimized and the resulting delta before sending data onward.
-
 ## How It Works
 1. Register a chat participant `@context` through the VS Code extension API.
 2. On each chat request, gather attached files and decode JSON contents.
-3. Convert JSON payloads to TOON, compare token counts (using `@dqbd/tiktoken`), and pick the lower-cost format.
+3. Convert JSON payloads to TOON, compare token counts (using `@dqbd/tiktoken`), and select the format with fewer tokens:
+   - **If the delta is positive** (TOON has fewer tokens than JSON), TOON is used.
+   - **If the delta is negative** (JSON has fewer tokens than TOON), JSON is used.
+   - This ensures the LLM always receives the most token-efficient format.
 4. Stream a summary of deltas back to the user and forward the optimized content to the LLM.
 
 ## Getting Started

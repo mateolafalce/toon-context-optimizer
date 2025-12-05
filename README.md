@@ -1,4 +1,14 @@
+<div align="center">
+   
 # TOON Context Optimizer
+
+![video](/public/video.gif)
+
+## Preview
+
+![image](/public/preview.png)
+
+</div>
 
 Boost adoption of the TOON format by seamlessly integrating it into your IDE chat workflows. **TOON Context Optimizer** inspects every JSON file you attach to VS Code's chat, converts it to TOON automatically when that saves tokens, and transparently forwards the optimal representation to the LLM.
 
